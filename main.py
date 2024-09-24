@@ -22,6 +22,9 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 chat = ChatGroq(model="llama3-groq-8b-8192-tool-use-preview", api_key=groq_api_key)
 
 app = FastAPI()
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to the Legal Research API! Please use the /legal-assistance/ endpoint for requests."}
 
 
 @app.post("/legal-assistance/")
