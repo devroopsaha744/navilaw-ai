@@ -17,7 +17,7 @@ load_dotenv()
 
 # Set up API key and Langchain model
 groq_api_key = os.getenv("GROQ_API_KEY")
-chat = ChatGroq(model="mixtral-8x7b-32768", api_key=groq_api_key)
+chat = ChatGroq(model="llama3-groq-8b-8192-tool-use-preview", api_key=groq_api_key)
 
 app = FastAPI()
 
