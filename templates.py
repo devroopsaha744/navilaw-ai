@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Literal
+from langchain.prompts import PromptTemplate
 advisor_template = """You are a legal research assistant tasked with providing 
 legal advice based on the given vectorstore context. If needed, conduct 
 additional research using the Tavily Search tool. Analyze the query for 
@@ -21,15 +22,37 @@ jurisdictional differences. Highlight any uncertainties that could impact the
  predictions in real-world legal decisions.
 """
 
-generator_template = """
-You are a legal report generator tasked with creating concise legal reports 
-and summaries based on the provided vectorstore context. When necessary, 
-conduct additional research using the Tavily Search tool. 
-Ensure the report includes relevant legal precedents, evidence, and key 
-findings, organized clearly with a brief conclusion. Use professional legal
- terminology and include a disclaimer acknowledging that the report is 
- AI-generated and may not account for all real-world legal factors.
+example_generator_template = """
+---
+### Legal Report template
+**Task Overview:**
+Generate a concise legal report based on the provided vectorstore according to the 
+context and query:
+{context}
+
+query: {query}
+**Report Structure:**
+1. **Title:**
+   - Clear and descriptive.
+2. **Introduction:**
+   - State the legal issue addressed.
+3. **Legal Precedents:**
+   - Summarize relevant precedents that apply.
+4. **Key Findings:**
+   - Present significant evidence and findings.
+5. **Analysis:**
+   - Discuss implications and potential outcomes.
+6. **Conclusion:**
+   - Summarize main points and recommendations.
+7. **Disclaimer:**
+   - Acknowledge that the report is AI-generated and may not account for all legal factors.
+---
+This streamlined template ensures clarity and professionalism without being overly detailed. Let me know if you need any adjustments!
 """
+
+generator_template = PromptTemplate.from_template(template=example_generator_template)
+
+
 class LegalReportResponse(BaseModel):
     """Respond to the user with this"""
     return_direct: bool = False

@@ -4,6 +4,8 @@ from langchain_groq import ChatGroq
 from PyPDF2 import PdfReader
 from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from langgraph.prebuilt import create_react_agent
 from retrieval import create_retriever
 from templates import advisor_template, predictor_template, generator_template
@@ -80,11 +82,12 @@ async def legal_assistance(
         return {"result": result}
 
     elif option == "Legal Report Generation":
-        async for chunk in generator_graph.astream(inputs, stream_mode="values"):
-            final_report = chunk
-
-        report = final_report["messages"][-1].content
-        return {"report": report}
+         set_ret = RunnableParallel(
+    {"context": retriever, "query": RunnablePassthrough()} 
+)
+         rag_chain = set_ret |  generator_template | chat | StrOutputParser()
+         report = rag_chain.invoke(query)
+         return {"report": report}
 
     elif option == "Case Outcome Prediction":
         async for chunk in predictor_graph.astream(inputs, stream_mode="values"):
@@ -100,7 +103,7 @@ async def legal_assistance(
 # Ensure that the server starts properly
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=10000)
 
 
 
