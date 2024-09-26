@@ -1,5 +1,6 @@
 import os
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from langchain_groq import ChatGroq
 from PyPDF2 import PdfReader
 from langchain.docstore.document import Document
@@ -22,6 +23,14 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 chat = ChatGroq(model="llama3-groq-8b-8192-tool-use-preview", api_key=groq_api_key)
 
 app = FastAPI()
+# Adding CORS middleware to allow all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the Legal Research API! Please use the /legal-assistance/ endpoint for requests."}
