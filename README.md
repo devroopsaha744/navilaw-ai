@@ -82,6 +82,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - LangChain for RAG capabilities
 - PyPDF2 for PDF processing
 - Tavily for supplementary legal research
+- Streamlit for the User Interface
 
 
 Feel free to customize any sections to better fit your project’s details or your preferred formatting style! Let me know if you need further adjustments or additional information.
