@@ -79,7 +79,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Acknowledgments
 - FastAPI for building the API
-- LangChain for RAG capabilities
+- LangChain for Agentic RAG capabilities
 - PyPDF2 for PDF processing
 - Tavily for supplementary legal research
 - Streamlit for the User Interface
