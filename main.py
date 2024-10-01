@@ -5,6 +5,7 @@ from langchain_groq import ChatGroq
 from PyPDF2 import PdfReader
 from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from langgraph.prebuilt import create_react_agent
@@ -75,13 +76,16 @@ async def legal_assistance(
         "Searches and returns excerpts from the set of PDF docs.",
     )
 
+    #Defining the checkpointer
+    memory = MemorySaver()
+
     # Tools setup for different options
     tools = [tavily_tool, retrieval_tool]
 
     # Create Langchain agents based on the task
-    advisor_graph = create_react_agent(chat, tools=tools, state_modifier=advisor_template)
-    predictor_graph = create_react_agent(chat, tools=tools, state_modifier=predictor_template)
-    generator_graph = create_react_agent(chat, tools=tools, state_modifier=generator_template)
+    advisor_graph = create_react_agent(chat, tools=tools, interrupt_before=["tools"], checkpointer=memory, state_modifier=advisor_template)
+    predictor_graph = create_react_agent(chat, tools=tools,interrupt_before=["tools"], checkpointer=memory, state_modifier=predictor_template)
+    
 
     inputs = {"messages": [("human", query)]}
 
