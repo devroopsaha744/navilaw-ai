@@ -154,13 +154,13 @@ You can also access the **NaviLaw** web application using Streamlit:
 ```
 └── devroopsaha744-navilaw-ai/
     ├── README.md
-    ├── Dockerfile
     ├── LICENSE
     ├── graphlogic.ipynb
-    ├── .dockerignore
     ├── backend/
     │   ├── main.py
     │   ├── requirements.txt
+    |   ├── Dockerfile
+    |   ├── .dockerignore
     │   ├── retrieval.py
     │   ├── templates.py
     │   ├── test.py
