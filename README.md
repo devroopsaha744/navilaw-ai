@@ -131,9 +131,9 @@ docker build -t navilaw-api ./backend
 docker run -p 10000:10000 navilaw-api
 ```
 
-## Streamlit App
-You can also access the **NaviLaw** web application using Streamlit:
-[https://navilaw-ai.streamlit.app/](https://navilaw-ai.streamlit.app/)
+## Flutter App
+You can also access the **NaviLaw** web application using Flutter:
+[Navilaw-ai](https://navilaw.vercel.app/)
 
 ## Demo Video
 [Watch the video here](https://youtu.be/NzFPQV9l6pY?si=R9D_Zmb7tMv0fJ49)
