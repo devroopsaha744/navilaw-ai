@@ -3,7 +3,7 @@
 ## Overview
 The **NaviLaw** system integrates the **ReAct** (Reasoning and Action Agentic Architecture) with **RAG** (Retrieval Augmented Generation), powered by the Llama3 70B language model, to manage tasks such as legal advisory, report generation, and case outcome prediction. This setup allows the system to act as an intelligent agent, conducting in-depth research on relevant legal databases and retrieving critical documents from user-uploaded files. Through sophisticated reasoning and document processing, it delivers actionable insights. Utilizing prebuilt tools and models, NaviLaw processes user queries, retrieves relevant legal excerpts, and dynamically generates responses, reports, or predictions, while ensuring real-time interactivity.
 
-![img-1](https://github.com/devroopsaha744/navilaw-ai/blob/main/Screenshot%202024-09-25%20193623.png)
+![img-1](navilaw-working.jpg)
 
 ## Features
 - **Legal Query Processing:** Users can submit queries related to legal issues, and the system generates relevant insights based on the context of uploaded legal documents.
