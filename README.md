@@ -133,7 +133,7 @@ docker run -p 10000:10000 navilaw-api
 
 ## Flutter App
 You can also access the **NaviLaw** web application using Flutter:
-[Navilaw-ai](https://navilaw.vercel.app/)
+[Navilaw-ai](https://navilaw-ai.streamlit.app/)
 
 ## Demo Video
 [Watch the video here](https://youtu.be/NzFPQV9l6pY?si=R9D_Zmb7tMv0fJ49)
