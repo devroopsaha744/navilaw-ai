@@ -27,6 +27,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+#### Testting the new code review
+
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the Legal Research API! Please use one of the endpoints for requests."}
